@@ -1,6 +1,15 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements in the html.
 var dateDisplayEl = $('#currentDay');
+// var blockEl9 = $('#hour-9');
+// var blockEl10 = $('#hour-10');
+// var blockEl11 = $('#hour-11');
+// var blockEl12 = $('#hour-12');
+// var blockEl13 = $('#hour-13');
+// var blockEl14 = $('#hour-14');
+// var blockEl15 = $('#hour-15');
+// var blockEl16 = $('#hour-16');
+// var blockEl17 = $('#hour-17');
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -14,7 +23,19 @@ $(function () {
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
-  //
+  function timeBlocks() {
+    var hour = dayjs().format('H');
+    for (i = 9; i <= 17; i++) {
+      if (i < hour) {
+        var addClass = $('#hour-' + i).addClass("past");
+      } else if (i == hour) {
+        var addClass = $('#hour-' + i).addClass("present");
+      } else {
+        var addClass = $('#hour-' + i).addClass("future");
+      }
+    }
+  }
+  timeBlocks();
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
